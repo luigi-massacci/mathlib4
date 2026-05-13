@@ -218,10 +218,8 @@ variable [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
 theorem integralAgainstBilinCLM_dirac_eq_delta (x : E) :
     integralAgainstBilinCLM (ContinuousLinearMap.lsmul _ _) (dirac x)
       (1 : E → ℝ) = (delta x : 𝓓'^{n}(Ω, ℝ)) := by
-  have : LocallyIntegrableOn (1 : E → ℝ) Ω (dirac x) := by
-    refine IntegrableOn.locallyIntegrableOn (integrableOn_const ?_)
-    · rw [← @isFiniteMeasure_restrict]
-      infer_instance
+  have : LocallyIntegrableOn (1 : E → ℝ) Ω (dirac x) :=
+    IntegrableOn.locallyIntegrableOn integrableOn_const
   aesop
 
 end DiracDelta
