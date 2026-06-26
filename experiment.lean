@@ -1,6 +1,6 @@
 import Mathlib
 
-open SchwartzMap Filter
+open SchwartzMap Filter Nat NNReal ContDiff
 
 -- set_option trace.Meta.synthInstance true
 
@@ -10,6 +10,10 @@ noncomputable instance : TopologicalSpace (𝓢(ℝ, ℂ) →L[ℂ] 𝓢(ℝ, �
 noncomputable def bump (x : ℝ) : ℂ :=
  if x ∈ Set.Ioo (-1 : ℝ) 1  then Complex.exp (-1 / (1 - x^2)) else 0
 
+
+theorem smooth_bump : ContDiff ℝ ∞ bump := by sorry
+
+theorem decay_bump : ∀ k n : ℕ, ∃ C : ℝ, ∀ x, ‖x‖ ^ k * ‖iteratedFDeriv ℝ n bump x‖ ≤ C := sorry
 
 example (hExp : Summable (fun n : ℕ => ((n.factorial : ℂ)⁻¹ • ((SchwartzMap.derivCLM ℂ ℂ) ^ n))))
   : False := by
@@ -36,7 +40,6 @@ example (hExp : Summable (fun n : ℕ => ((n.factorial : ℂ)⁻¹ • ((Schwart
   use N+1
   simp
   set f  : 𝓢(ℝ, ℂ) := (((N + 1).factorial : ℂ)⁻¹ • (⇑(derivCLM ℂ ℂ))^[N] ((derivCLM ℂ ℂ) bump)) with f_def
-
   have hbound := (le_seminorm ℂ 0 0 f)
   simp at hbound
   nth_rewrite 1 [f_def] at hbound
