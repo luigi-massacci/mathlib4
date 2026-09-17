@@ -217,6 +217,17 @@ theorem delta_eq_zero_of_notMem (x : E) (hx : x ∉ Ω) : (delta x : 𝓓'^{n}(�
     exact hx (f.tsupport_subset hx_mem)
   exact image_eq_zero_of_notMem_tsupport hx_support
 
+open MeasureTheory MeasureTheory.Measure TestFunction
+
+variable [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E]
+
+theorem integralAgainstBilinCLM_dirac_eq_delta (x : E) :
+    integralAgainstBilinCLM (ContinuousLinearMap.lsmul _ _) (dirac x)
+      (1 : E → ℝ) = (delta x : 𝓓'^{n}(Ω, ℝ)) := by
+  have : LocallyIntegrableOn (1 : E → ℝ) Ω (dirac x) :=
+    IntegrableOn.locallyIntegrableOn integrableOn_const
+  aesop
+
 end DiracDelta
 
 section LineDerivCLM
