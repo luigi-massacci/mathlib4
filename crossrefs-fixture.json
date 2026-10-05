@@ -38,6 +38,19 @@
       "module": "Mathlib.RingTheory.AdicCompletion.Completeness",
       "line": 184,
       "decl": "AdicCompletion.isAdicComplete"
+    },
+    {
+      "refs": [
+        {
+          "url": "https://stacks.math.columbia.edu/tag/05GG",
+          "id": "05GG",
+          "db": "stacks",
+          "comment": "(2)"
+        }
+      ],
+      "module": "Mathlib.RingTheory.AdicCompletion.Completeness",
+      "line": 154,
+      "decl": "AdicCompletion.pow_smul_top_eq_ker_eval"
     }
   ]
 }
